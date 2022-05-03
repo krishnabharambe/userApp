@@ -9,6 +9,7 @@ import Layout from '../components/Layout';
 import Slider1 from '../components/HomePage/Slider1';
 import LoadingComp from '../components/loadingComp';
 import MainServicesView from '../components/HomePage/mainServicesView';
+import Slider2 from '../components/HomePage/Slider2';
 
 export default function Home({ data2, MainServices }) {
   const { data: session, status } = useSession();
@@ -88,7 +89,7 @@ export default function Home({ data2, MainServices }) {
               <>
                 <Layout>
                   <div className="py-2">
-                    <Slider1 data2={imgsliderData} />
+                    <Slider2 data2={data2} />
                     <MainServicesView data2={MainServices} />
                   </div>
                   {/* <h1 className="">Session - {session.id}</h1>
