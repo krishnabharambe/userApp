@@ -32,7 +32,7 @@ export default function mainServicesView({ data2 }) {
                   className="p-4"
                 />
               </div>
-              <p class="prose prose-sm font-medium text-center">{item.title}</p>
+              <p className="prose prose-sm font-medium text-center">{item.title}</p>
             </SwiperSlide>
           </li>
         ))}
@@ -63,7 +63,7 @@ export default function mainServicesView({ data2 }) {
                   className="p-4"
                 />
               </div>
-              <p class="prose prose-sm font-medium text-center">{item.title}</p>
+              <p className="prose prose-sm font-medium text-center">{item.title}</p>
             </SwiperSlide>
           </li>
         ))}
