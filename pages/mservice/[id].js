@@ -94,7 +94,7 @@ export default function MServiceFun({ data }) {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get("http://127.0.0.1:8000/api/allServicesList/");
+  const res = await axios.get("https://krishnabharambe.pythonanywhere.com/api/allServicesList/");
   const data = await res.data;
 
   const paths = data.map((dataitem) => ({
@@ -106,7 +106,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await axios.get(
-    `http://127.0.0.1:8000/api/allServicesList/${params.id}`
+    `https://krishnabharambe.pythonanywhere.com/api/allServicesList/${params.id}`
   );
   const data = await res.data;
 

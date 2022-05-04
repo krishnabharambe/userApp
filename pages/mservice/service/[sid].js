@@ -77,7 +77,7 @@ export default function ServiceFun({ data }) {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get("http://127.0.0.1:8000/api/allsubSubService/");
+  const res = await axios.get("https://krishnabharambe.pythonanywhere.com/api/allsubSubService/");
   const data = await res.data;
 
   const paths = data.map((dataitem) => ({
@@ -89,7 +89,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await axios.get(
-    `http://127.0.0.1:8000/api/SubService/${params.sid}`
+    `https://krishnabharambe.pythonanywhere.com/api/SubService/${params.sid}`
   );
   const data = await res.data;
 
