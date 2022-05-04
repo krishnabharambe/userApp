@@ -5,6 +5,7 @@ import { Scrollbar } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/scrollbar";
+import Link from "next/link";
 
 export default function mainServicesView({ data2 }) {
   console.log("MainServices->", data2);
@@ -22,7 +23,10 @@ export default function mainServicesView({ data2 }) {
       >
         {data2.map((item, i) => (
           <li key={i}>
+           
             <SwiperSlide>
+            <Link href={`/mservice/${item.id}`}>
+              <a>
               <div className="aspect-w-4 aspect-h-4 md:aspect-w-1 md:aspect-h-1 my-2">
                 <img
                   src={
@@ -32,7 +36,7 @@ export default function mainServicesView({ data2 }) {
                   className="p-4"
                 />
               </div>
-              <p className="prose prose-sm font-medium text-center">{item.title}</p>
+              <p className="prose prose-sm font-medium text-center">{item.title}</p></a></Link>
             </SwiperSlide>
           </li>
         ))}
@@ -54,6 +58,8 @@ export default function mainServicesView({ data2 }) {
         {data2.map((item, i) => (
           <li key={i}>
             <SwiperSlide>
+            <Link href={`/mservice/${item.id}`}>
+              <a>
               <div className="aspect-w-4 aspect-h-4 md:aspect-w-1 md:aspect-h-1">
                 <img
                   src={
@@ -63,7 +69,7 @@ export default function mainServicesView({ data2 }) {
                   className="p-4"
                 />
               </div>
-              <p className="prose prose-sm font-medium text-center">{item.title}</p>
+              <p className="prose prose-sm font-medium text-center">{item.title}</p></a></Link>
             </SwiperSlide>
           </li>
         ))}

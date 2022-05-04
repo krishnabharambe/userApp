@@ -2,29 +2,21 @@ import { signOut, useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getCookies } from 'cookies-next';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserInfo } from '../store/usersSlice';
 import Layout from '../components/Layout';
-import Slider1 from '../components/HomePage/Slider1';
 import LoadingComp from '../components/loadingComp';
 import MainServicesView from '../components/HomePage/mainServicesView';
 import Slider2 from '../components/HomePage/Slider2';
-
-export default function Home({ data2, MainServices }) {
+import AllservicesView from '../components/HomePage/allservicesView';
+export default function Home({ data2, MainServices,allMainServices }) {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const [isLoading, SetIsLoading] = useState(false);
   const [imgsliderData, setImgSliderData] = useState(null);
   const dispatch = useDispatch();
   console.log('MainServices', MainServices);
+  console.log('allMainServices', allMainServices);
 
-  // const images = [
-  //   'https://krishnabharambe.pythonanywhere.com/media/SliderImages/shop_banner_43in_x_84in_01_starrr_1.png',
-  //   'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
-  //   'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
-  //   'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60',
-  // ];
 
   let images = [];
   const getSliderdata = () => {
@@ -39,7 +31,6 @@ export default function Home({ data2, MainServices }) {
   useEffect(() => {
     SetIsLoading(true);
     const token = getCookies('token');
-    // getsliderImageDetails();
     if (!token.token) {
       signOut({ callbackUrl: '/auth' });
     }
@@ -91,6 +82,7 @@ export default function Home({ data2, MainServices }) {
                   <div className="py-2">
                     <Slider2 data2={data2} />
                     <MainServicesView data2={MainServices} />
+                    <AllservicesView data2={allMainServices} /> 
                   </div>
                   {/* <h1 className="">Session - {session.id}</h1>
                   <h1 className="">Status-- {status}</h1> */}
@@ -116,10 +108,15 @@ export async function getStaticProps() {
   const MainServices = await axios.get(
     'https://krishnabharambe.pythonanywhere.com/api/MainServicesList/'
   );
+
+  const allMainServices = await axios.get(
+    'http://127.0.0.1:8000/api/allServicesList/'
+  );
   return {
     props: {
       data2: data2.data ?? {},
       MainServices: MainServices.data ?? {},
+      allMainServices: allMainServices.data ?? {},
     },
   };
 }
