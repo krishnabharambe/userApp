@@ -110,7 +110,7 @@ export async function getStaticProps() {
   );
 
   const allMainServices = await axios.get(
-    'http://127.0.0.1:8000/api/allServicesList/'
+    'https://krishnabharambe.pythonanywhere.com/api/allServicesList/'
   );
   return {
     props: {
